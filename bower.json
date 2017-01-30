@@ -1,0 +1,25 @@
+{
+  "name": "fishing_maps",
+  "authors": [
+    "Gabe Kessler <gabe@gabesstudio.com>"
+  ],
+  "description": "Tag yo fish!",
+  "main": "",
+  "keywords": [
+    "fishing"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "patternfly": "^3.18.1"
+  }
+}

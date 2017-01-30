@@ -1,0 +1,59 @@
+<div class="row bottom_margin_md">
+  <div class="col-md-12">
+    <div class="btn-group-lg btn-group-justified">
+      <%= link_to 'Get Current Position', '#', id: 'get_current_location', class: 'btn btn-info' %>
+      <%= link_to 'Clear Markers', '#', id: 'clear_markers', class: 'btn btn-warning' %>
+      <%= link_to 'Toggle Map', '#', id: 'toggle_map', class: 'btn btn-info' %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(location, html: {class: 'form'}) do |f| %>
+
+    <% if location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+        <% location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+
+    <div class="panel panel-default relative" id="map_area">
+      <%= render '/global/overlay_spinner' %>
+      <div class="panel-body">
+        <div id="map"></div>
+      </div>
+    </div>
+
+    <div id="map_inputs" class="relative">
+      <%= render '/global/overlay_spinner' %>
+        <div class="form-group">
+          <%= f.label :latitude, class: 'sr-only' %>
+          <%= f.text_field :latitude, class: 'form-control', placeholder: :latitude %>
+        </div>
+        <div class="form-group">
+          <%= f.label :longitude, class: 'sr-only' %>
+          <%= f.text_field :longitude, class: 'form-control', placeholder: :longitude %>
+        </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :name, class: 'sr-only' %>
+      <%= f.text_field :name, class: 'form-control', placeholder: :name %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Save', class: 'btn btn-success', data: {'disable-with': 'Saving...'} %>
+      <%= link_to 'Cancel', locations_path, class: 'btn btn-link' %>
+    </div>
+
+    <% end %>
+  </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdwCWIPLBvblQ4hcQQV62sUZCGHXZgSWg&callback=initMap"
+async defer></script>
